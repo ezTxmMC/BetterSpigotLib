@@ -17,7 +17,7 @@ public class BetterScoreboard {
 
     public BetterScoreboard(Scoreboard scoreboard, String scoreboardId, String displayName) {
         this.scoreboard = scoreboard;
-        this.objective = getObjective(scoreboardId, displayName);
+        this.objective = getOrCreateObjective(scoreboardId, displayName);
         this.lines = new HashMap<>();
     }
 
@@ -43,7 +43,7 @@ public class BetterScoreboard {
         lines.get(line).setPrefix(newContent);
     }
 
-    private Objective getObjective(String id, String display) {
+    private Objective getOrCreateObjective(String id, String display) {
         AtomicReference<Objective> currentObjective = new AtomicReference<>(scoreboard.getObjective(id));
         if (currentObjective.get() == null) {
             currentObjective.set(scoreboard.registerNewObjective(id, Criteria.DUMMY, display));
