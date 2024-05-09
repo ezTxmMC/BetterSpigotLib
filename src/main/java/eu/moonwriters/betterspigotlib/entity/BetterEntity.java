@@ -30,4 +30,8 @@ public class BetterEntity {
     public void remove() {
         entity.remove();
     }
+
+    public Entity getEntity() {
+        return entity;
+    }
 }
