@@ -33,7 +33,7 @@ public class BetterScoreboard {
             }
             team.setPrefix(content);
             team.addEntry(picker.chooseColor().toString());
-            objective.getScore(UUID.randomUUID().toString()).setScore(line);
+            objective.getScore(picker.chooseColor().toString()).setScore(line);
             lines.put(line, team);
             teams.add(team);
             return;
