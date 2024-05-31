@@ -12,22 +12,22 @@ public class BetterScheduler {
         this.plugin = plugin;
     }
 
-    public BukkitTask runTaskTimer(Runnable runnable, int delay, int period) {
+    public BukkitTask runTimer(Runnable runnable, int delay, int period) {
         bukkitTask = Bukkit.getScheduler().runTaskTimer(plugin, runnable, delay, period);
         return bukkitTask;
     }
 
-    public BukkitTask runTaskTimerAsync(Runnable runnable, int delay, int period) {
+    public BukkitTask runTimerAsync(Runnable runnable, int delay, int period) {
         bukkitTask = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, runnable, delay, period);
         return bukkitTask;
     }
 
-    public BukkitTask runTaskLater(Runnable runnable, int delay) {
+    public BukkitTask runLater(Runnable runnable, int delay) {
         bukkitTask = Bukkit.getScheduler().runTaskLater(plugin, runnable, delay);
         return bukkitTask;
     }
 
-    public BukkitTask runTaskLaterAsync(Runnable runnable, int delay) {
+    public BukkitTask runLaterAsync(Runnable runnable, int delay) {
         bukkitTask = Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, runnable, delay);
         return bukkitTask;
     }
