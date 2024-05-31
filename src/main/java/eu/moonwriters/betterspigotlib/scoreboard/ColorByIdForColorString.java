@@ -2,10 +2,10 @@ package eu.moonwriters.betterspigotlib.scoreboard;
 
 import org.bukkit.ChatColor;
 
-public class ColorPicker {
+public class ColorByIdForColorString {
     private final int slot;
 
-    public ColorPicker(int slot) {
+    public ColorByIdForColorString(int slot) {
         this.slot = slot;
     }
 
