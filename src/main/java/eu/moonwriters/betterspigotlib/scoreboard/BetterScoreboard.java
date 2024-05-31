@@ -1,7 +1,6 @@
 package eu.moonwriters.betterspigotlib.scoreboard;
 
-import eu.moonwriters.betterspigotlib.text.ColoredStringBuilder;
-import org.bukkit.Bukkit;
+import eu.moonwriters.betterspigotlib.text.ColorString;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
@@ -16,9 +15,9 @@ public class BetterScoreboard {
     private List<Team> teams;
 
     public BetterScoreboard(Player player, String scoreboardId, String displayName) {
-        this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        this.scoreboard = player.getScoreboard();
         this.scoreboardId = scoreboardId;
-        this.objective = getOrCreateObjective(scoreboardId, new ColoredStringBuilder(displayName).bukkitColor());
+        this.objective = getOrCreateObjective(scoreboardId, new ColorString(displayName).bukkitColor());
         this.lines = new HashMap<>();
         this.teams = new ArrayList<>();
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -27,12 +26,12 @@ public class BetterScoreboard {
 
     public void setLine(int line, String content, boolean updatable) {
         if (updatable) {
-            ColorPicker picker = new ColorPicker(teams.size());
+            ColorByIdForColorString picker = new ColorByIdForColorString(teams.size());
             Team team = scoreboard.getTeam(String.valueOf(line));
             if (team == null) {
                 team = scoreboard.registerNewTeam(String.valueOf(line));
             }
-            team.setPrefix(new ColoredStringBuilder(content).bukkitColor());
+            team.setPrefix(new ColorString(content).bukkitColor());
             team.addEntry(picker.chooseColor().toString());
             objective.getScore(picker.chooseColor().toString()).setScore(line);
             lines.put(line, team);
@@ -46,7 +45,7 @@ public class BetterScoreboard {
         if (!lines.containsKey(line)) {
             return;
         }
-        lines.get(line).setPrefix(new ColoredStringBuilder(newContent).bukkitColor());
+        lines.get(line).setPrefix(new ColorString(newContent).bukkitColor());
     }
 
     public void remove() {
