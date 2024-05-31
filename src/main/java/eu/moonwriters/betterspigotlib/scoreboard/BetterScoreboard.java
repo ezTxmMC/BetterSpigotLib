@@ -2,10 +2,7 @@ package eu.moonwriters.betterspigotlib.scoreboard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.Criteria;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
+import org.bukkit.scoreboard.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +20,7 @@ public class BetterScoreboard {
         this.scoreboardId = scoreboardId;
         this.objective = getOrCreateObjective(scoreboardId, displayName);
         this.lines = new HashMap<>();
+        this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         player.setScoreboard(this.scoreboard);
     }
 
