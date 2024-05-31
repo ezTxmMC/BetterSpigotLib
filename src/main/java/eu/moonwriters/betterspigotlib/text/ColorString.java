@@ -1,24 +1,25 @@
 package eu.moonwriters.betterspigotlib.text;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 
-public class ColoredStringBuilder {
+public class ColorString {
     private String string;
 
-    public ColoredStringBuilder() {
+    public ColorString() {
         this.string = "";
     }
 
-    public ColoredStringBuilder(String string) {
+    public ColorString(String string) {
         this.string = string;
     }
 
-    public ColoredStringBuilder append(String string) {
+    public ColorString append(String string) {
         this.string = this.string + string;
         return this;
     }
 
-    public ColoredStringBuilder nextLine() {
+    public ColorString nextLine() {
         append("\n");
         return this;
     }
@@ -27,11 +28,11 @@ public class ColoredStringBuilder {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    public String javaColor() {
-        return JavaColor.apply(string);
-    }
-
     public String hexColor(String hex) {
-        return JavaColor.colored(hex, string);
+        int parsedHex = Integer.parseInt(hex.replace("#", "0x"));
+        int r = (parsedHex & 0xFF0000) >> 16;
+        int g = (parsedHex & 0xFF00) >> 8;
+        int b = (parsedHex & 0xFF);
+        return Color.fromRGB(r, g, b) + string;
     }
 }
