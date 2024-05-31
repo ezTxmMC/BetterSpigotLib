@@ -1,5 +1,7 @@
 package eu.moonwriters.betterspigotlib.scoreboard;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -15,10 +17,11 @@ public class BetterScoreboard {
     private final Objective objective;
     private final Map<Integer, Team> lines;
 
-    public BetterScoreboard(Scoreboard scoreboard, String scoreboardId, String displayName) {
-        this.scoreboard = scoreboard;
+    public BetterScoreboard(Player player, String scoreboardId, String displayName) {
+        this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         this.objective = getOrCreateObjective(scoreboardId, displayName);
         this.lines = new HashMap<>();
+        player.setScoreboard(this.scoreboard);
     }
 
     public void setLine(int line, String content, boolean updatable) {
