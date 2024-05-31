@@ -4,9 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class BetterScoreboard {
@@ -14,26 +12,30 @@ public class BetterScoreboard {
     private String scoreboardId;
     private Objective objective;
     private Map<Integer, Team> lines;
+    private List<Team> teams;
 
     public BetterScoreboard(Player player, String scoreboardId, String displayName) {
         this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         this.scoreboardId = scoreboardId;
         this.objective = getOrCreateObjective(scoreboardId, displayName);
         this.lines = new HashMap<>();
+        this.teams = new ArrayList<>();
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         player.setScoreboard(this.scoreboard);
     }
 
     public void setLine(int line, String content, boolean updatable) {
         if (updatable) {
+            ColorPicker picker = new ColorPicker(teams.size());
             Team team = scoreboard.getTeam(String.valueOf(line));
             if (team == null) {
                 team = scoreboard.registerNewTeam(String.valueOf(line));
             }
             team.setPrefix(content);
-            team.addEntry(UUID.randomUUID().toString());
+            team.addEntry(picker.chooseColor().toString());
             objective.getScore(UUID.randomUUID().toString()).setScore(line);
             lines.put(line, team);
+            teams.add(team);
             return;
         }
         objective.getScore(content).setScore(line);
@@ -52,6 +54,7 @@ public class BetterScoreboard {
         scoreboard = null;
         scoreboardId = null;
         lines = null;
+        teams = null;
     }
 
     private Objective getOrCreateObjective(String id, String display) {
