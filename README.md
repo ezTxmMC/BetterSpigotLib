@@ -1,5 +1,7 @@
 # BetterSpigotLib
 
+The library to improve and speed up your minecraft plugin coding.
+
 ## Examples
 
 ### BetterScoreboard
