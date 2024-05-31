@@ -1,5 +1,6 @@
 package eu.moonwriters.betterspigotlib.scoreboard;
 
+import eu.moonwriters.betterspigotlib.text.ColoredStringBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
@@ -17,7 +18,7 @@ public class BetterScoreboard {
     public BetterScoreboard(Player player, String scoreboardId, String displayName) {
         this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         this.scoreboardId = scoreboardId;
-        this.objective = getOrCreateObjective(scoreboardId, displayName);
+        this.objective = getOrCreateObjective(scoreboardId, new ColoredStringBuilder(displayName).bukkitColor());
         this.lines = new HashMap<>();
         this.teams = new ArrayList<>();
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -31,7 +32,7 @@ public class BetterScoreboard {
             if (team == null) {
                 team = scoreboard.registerNewTeam(String.valueOf(line));
             }
-            team.setPrefix(content);
+            team.setPrefix(new ColoredStringBuilder(content).bukkitColor());
             team.addEntry(picker.chooseColor().toString());
             objective.getScore(picker.chooseColor().toString()).setScore(line);
             lines.put(line, team);
@@ -45,7 +46,7 @@ public class BetterScoreboard {
         if (!lines.containsKey(line)) {
             return;
         }
-        lines.get(line).setPrefix(newContent);
+        lines.get(line).setPrefix(new ColoredStringBuilder(newContent).bukkitColor());
     }
 
     public void remove() {
