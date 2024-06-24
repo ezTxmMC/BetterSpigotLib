@@ -94,6 +94,6 @@ Latest Snapshot:
 <dependency>
    <groupId>com.github.MoonWriters</groupId>
    <artifactId>BetterSpigotLib</artifactId>
-   <version>v3.0-SNAPSHOT</version>
+   <version>v0.3-SNAPSHOT</version>
 </dependency>
 ```
