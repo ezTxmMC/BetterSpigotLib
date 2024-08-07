@@ -75,7 +75,7 @@ Latest Release:
 </repositories>
 
 <dependency>
-   <groupId>com.github.MoonWriters</groupId>
+   <groupId>com.github.ezTxmMC</groupId>
    <artifactId>BetterSpigotLib</artifactId>
    <version>0.2.0</version>
 </dependency>
@@ -92,7 +92,7 @@ Latest Snapshot:
 </repositories>
 
 <dependency>
-   <groupId>com.github.MoonWriters</groupId>
+   <groupId>com.github.ezTxmMC</groupId>
    <artifactId>BetterSpigotLib</artifactId>
    <version>v0.3-SNAPSHOT</version>
 </dependency>
